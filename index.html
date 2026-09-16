@@ -95,9 +95,11 @@ centers.forEach(c => {
         }
     )
     .addTo(map)
-    .bindPopup(
-        '<b>' + c.name + '</b><br>Kenttiä: ' + c.courts
-    );
+.bindPopup(
+    '<b>' + c.name + '</b><br>' +
+    'Kenttiä: ' + c.courts + '<br>' +
+    'Vaikutusalue: 4 km'
+);
 
     L.circle(
         [c.lat, c.lng],
