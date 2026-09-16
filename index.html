@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="fi">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<title>Uudenmaan Padelkartta</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <style>
+html,body{
+margin:0;
+padding:0;
+height:100%;
+font-family:Arial,sans-serif;
+}
+
 #map{
 height:100vh;
+width:100%;
+}
+
+.panel{
+position:absolute;
+top:10px;
+left:10px;
+z-index:1000;
+background:white;
+padding:12px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.25);
+max-width:320px;
+}
+
+.color-box{
+display:inline-block;
+width:12px;
+height:12px;
+margin-right:5px;
 }
 </style>
 
@@ -15,24 +45,53 @@ height:100vh;
 
 <body>
 
+<div class="panel">
+<h3 style="margin-top:0;">Uudenmaan Padelkartta</h3>
+
+<p>
+Keskuksia:
+<span id="centerCount"></span>
+</p>
+
+<p>
+Kenttiä:
+<span id="courtCount"></span>
+</p>
+
+<label>
+<input type="checkbox" id="toggleCircles" checked>
+Näytä 4 km vaikutusalueet
+</label>
+
+<hr>
+
+<div>
+<span class="color-box" style="background:#00A878"></span>
+Open Padel
+</div>
+
+<div>
+<span class="color-box" style="background:#FF9800"></span>
+Superpadel
+</div>
+
+<div>
+<span class="color-box" style="background:#E63946"></span>
+PadelCenter
+</div>
+
+<div>
+<span class="color-box" style="background:#777777"></span>
+Itsenäinen
+</div>
+
+</div>
+
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-
-const map = L.map('map');
-
-const bounds = centers.map(c => [c.lat, c.lng]);
-
-map.fitBounds(bounds);
-
-L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-attribution:'© OpenStreetMap'
-}
-).addTo(map);
 
 const centers = [
 
@@ -78,7 +137,18 @@ const centers = [
 
 ];
 
-centers.forEach(c => {
+const map = L.map('map').setView([60.28,24.98],10);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'© OpenStreetMap contributors'
+}
+).addTo(map);
+
+const circleLayer = L.layerGroup().addTo(map);
+
+centers.forEach(c=>{
 
 L.circleMarker(
 [c.lat,c.lng],
@@ -91,10 +161,8 @@ fillOpacity:1
 )
 .addTo(map)
 .bindPopup(
-`
-<b>${c.name}</b><br>
-Kenttiä: ${c.courts}
-`
+`<b>${c.name}</b><br>
+Kenttiä: ${c.courts}`
 );
 
 L.circle(
@@ -105,7 +173,25 @@ color:c.color,
 fillColor:c.color,
 fillOpacity:0.2
 }
-).addTo(map);
+).addTo(circleLayer);
+
+});
+
+document.getElementById("centerCount").innerText=
+centers.length;
+
+document.getElementById("courtCount").innerText=
+centers.reduce((s,c)=>s+c.courts,0);
+
+document
+.getElementById("toggleCircles")
+.addEventListener("change",function(){
+
+if(this.checked){
+map.addLayer(circleLayer);
+}else{
+map.removeLayer(circleLayer);
+}
 
 });
 
