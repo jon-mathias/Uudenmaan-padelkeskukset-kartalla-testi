@@ -36,29 +36,45 @@ attribution:'© OpenStreetMap'
 
 const centers = [
 
-{
-name:"PadelPoint Konala",
-lat:60.251,
-lng:24.846,
-courts:9,
-color:"#777777"
-},
+/* HELSINKI */
 
-{
-name:"Open Padel Vallila",
-lat:60.194,
-lng:24.949,
-courts:9,
-color:"#00A878"
-},
+{name:"PadelPoint Konala",lat:60.251,lng:24.846,courts:9,color:"#777777"},
+{name:"Open Padel Vallila",lat:60.194,lng:24.949,courts:9,color:"#00A878"},
+{name:"Open Padel Myllypuro",lat:60.225,lng:25.079,courts:8,color:"#00A878"},
+{name:"Padel Pirkkola",lat:60.232,lng:24.909,courts:8,color:"#777777"},
+{name:"Open Padel Jakomäki",lat:60.255,lng:25.078,courts:5,color:"#00A878"},
+{name:"Superpadel Siltamäki",lat:60.276,lng:24.987,courts:5,color:"#FF9800"},
+{name:"Padel Viikinranta",lat:60.218,lng:24.992,courts:3,color:"#777777"},
+{name:"Open Padel Lauttasaari",lat:60.153,lng:24.878,courts:3,color:"#00A878"},
+{name:"Superpadel Latokartano",lat:60.222,lng:25.046,courts:3,color:"#FF9800"},
+{name:"Padel Viikki",lat:60.219,lng:24.989,courts:2,color:"#777777"},
+{name:"PadelCenter Hernesaari",lat:60.145,lng:24.921,courts:2,color:"#E63946"},
+{name:"Padel Aurinkolahti",lat:60.207,lng:25.151,courts:2,color:"#777777"},
 
-{
-name:"Open Padel Myllypuro",
-lat:60.225,
-lng:25.079,
-courts:8,
-color:"#00A878"
-}
+/* ESPOO */
+
+{name:"House of Games",lat:60.218,lng:24.723,courts:19,color:"#777777"},
+{name:"ESC Padel",lat:60.157,lng:24.694,courts:11,color:"#777777"},
+{name:"Replay Padel Suomenoja",lat:60.159,lng:24.655,courts:4,color:"#777777"},
+{name:"Open Padel Leppävaara",lat:60.216,lng:24.812,courts:6,color:"#00A878"},
+
+/* VANTAA */
+
+{name:"Open Padel Kaivoksela",lat:60.267,lng:24.842,courts:10,color:"#00A878"},
+{name:"Open Padel Martinlaakso",lat:60.282,lng:24.853,courts:6,color:"#00A878"},
+{name:"Open Padel Rajatorppa",lat:60.284,lng:24.841,courts:6,color:"#00A878"},
+{name:"Let's Padel Porttipuisto",lat:60.315,lng:25.119,courts:5,color:"#777777"},
+
+/* KERAVA */
+
+{name:"Padel & Golfkamari",lat:60.396,lng:25.108,courts:5,color:"#777777"},
+{name:"XO Center",lat:60.404,lng:25.106,courts:4,color:"#777777"},
+
+/* JÄRVENPÄÄ */
+
+{name:"Hi5 Padel",lat:60.487,lng:25.087,courts:4,color:"#777777"},
+{name:"Kotone Sport",lat:60.474,lng:25.072,courts:5,color:"#777777"},
+{name:"Kotone Sport Diggarinkatu",lat:60.486,lng:25.061,courts:6,color:"#777777"}
 
 ];
 
@@ -75,7 +91,10 @@ fillOpacity:1
 )
 .addTo(map)
 .bindPopup(
-`<b>${c.name}</b><br>Kenttiä: ${c.courts}`
+`
+<b>${c.name}</b><br>
+Kenttiä: ${c.courts}
+`
 );
 
 L.circle(
