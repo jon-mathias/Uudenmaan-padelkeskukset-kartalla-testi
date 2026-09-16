@@ -1,0 +1,77 @@
+HTML
+1
+<!DOCTYPE html>
+2
+<html>
+3
+<head>
+4
+<meta charset="utf-8">
+5
+ 
+6
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+7
+ 
+8
+<style>
+9
+#map{
+10
+height:100vh;
+11
+}
+12
+</style>
+13
+ 
+14
+</head>
+15
+ 
+16
+<body>
+17
+ 
+18
+<div id="map"></div>
+19
+ 
+20
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+21
+ 
+22
+<script>
+23
+ 
+24
+const map = L.map('map').setView([60.205,24.95],11);
+25
+ 
+26
+L.tileLayer(
+27
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+28
+{
+29
+attribution:'© OpenStreetMap'
+30
+}
+31
+).addTo(map);
+32
+ 
+33
+L.marker([60.251,24.846]).addTo(map);
+34
+ 
+35
+</script>
+36
+ 
+37
+</body>
+38
+</html>
