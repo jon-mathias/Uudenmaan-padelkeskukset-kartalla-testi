@@ -99,7 +99,8 @@ centers.forEach(c => {
     '<b>' + c.name + '</b><br>' +
     'Kenttiä: ' + c.courts + '<br>' +
     'Vaikutusalue: 4 km'
-);
+)
+.openPopup();
 
     L.circle(
         [c.lat, c.lng],
