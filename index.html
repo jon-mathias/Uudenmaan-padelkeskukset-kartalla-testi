@@ -21,7 +21,11 @@ height:100vh;
 
 <script>
 
-const map = L.map('map').setView([60.205,24.95],11);
+const map = L.map('map');
+
+const bounds = centers.map(c => [c.lat, c.lng]);
+
+map.fitBounds(bounds);
 
 L.tileLayer(
 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
