@@ -1,3 +1,120 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Helsingin Padelkeskukset</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+htmlht:100%;
+font-family:Arial,sans-serif;
+}
+
+#map{
+height:100vh;
+width:100%;
+}
+
+.panel{
+position:absolute;
+top:10px;
+left:10px;
+z-index:1000;
+background:white;
+padding:12px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.25);
+max-width:320px;
+}
+
+.legend-item{
+margin:4px 0;
+}
+
+.color-box{
+display:inline-block;
+width:12px;
+height:12px;
+margin-right:5px;
+vertical-align:middle;
+}
+
+.small{
+font-size:12px;
+color:#555;
+margin-top:8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+<h3 style="margin-top:0;">Helsingin padelkeskukset</h3>
+
+<label>
+<input type="checkbox" id="toggleCircles" checked>
+Näytä 4 km vaikutusalueet
+</label>
+
+<p>
+<strong>Keskuksia:</strong>
+<span id="centerCount"></span>
+</p>
+
+<p>
+<strong>Kenttiä yhteensä:</strong>
+<span id="courtCount"></span>
+</p>
+
+<hr>
+
+<div class="legend-item">
+<span class="color-box" style="background:#00A878"></span>
+Open Padel
+</div>
+
+<div class="legend-item">
+<span class="color-box" style="background:#FF9800"></span>
+Superpadel
+</div>
+
+<div class="legend-item">
+<span class="color-box" style="background:#E63946"></span>
+PadelCenter
+</div>
+
+<div class="legend-item">
+<span class="color-box" style="background:#777777"></span>
+Itsenäinen
+</div>
+
+<div class="small">
+Keskustiedot tarkistettu 16.9.2026.<br><br>
+
+Lista perustuu keskusten omilta sivuilta
+vahvistettuihin tietoihin eikä välttämättä
+sisällä kaikkia keskuksia.<br><br>
+
+Ympyrät kuvaavat 4 kilometrin
+linnuntiesädettä eivätkä todellista
+markkina-aluetta.
+</div>
+
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaft/leaflet.jsscript>
+
+<script>
+
 const centers = [
 
 {
@@ -6,7 +123,7 @@ municipality:"Helsinki",
 chain:"Itsenäinen",
 courts:9,
 type:"Sisä",
-address:"Malminkartanonkuja 2, Helsinki",
+address:"Malminkartanonkuja 2",
 lat:60.251,
 lng:24.846,
 source:"https://www.padelpointkonala.fi",
@@ -19,7 +136,7 @@ municipality:"Helsinki",
 chain:"Open Padel",
 courts:9,
 type:"Sisä",
-address:"Konepajanpasaasi 6, Helsinki",
+address:"Konepajanpasaasi 6",
 lat:60.194,
 lng:24.949,
 source:"https://www.openpadel.fi",
@@ -32,7 +149,7 @@ municipality:"Helsinki",
 chain:"Open Padel",
 courts:8,
 type:"Sisä",
-address:"Myllypuro, Helsinki",
+address:"Myllypuro",
 lat:60.225,
 lng:25.079,
 source:"https://www.openpadel.fi",
@@ -45,7 +162,7 @@ municipality:"Helsinki",
 chain:"Itsenäinen",
 courts:8,
 type:"Sisä",
-address:"Pirkkolan Metsätie 8, Helsinki",
+address:"Pirkkolan Metsätie 8",
 lat:60.232,
 lng:24.909,
 source:"https://pirkkolahalli.fi/padelkenttia/",
@@ -58,7 +175,7 @@ municipality:"Helsinki",
 chain:"Open Padel",
 courts:5,
 type:"Sisä",
-address:"Luiskatie 1, Helsinki",
+address:"Luiskatie 1",
 lat:60.255,
 lng:25.078,
 source:"https://www.openpadel.fi",
@@ -71,7 +188,7 @@ municipality:"Helsinki",
 chain:"Superpadel",
 courts:5,
 type:"Ulko",
-address:"Pallomäentie 14, Helsinki",
+address:"Pallomäentie 14",
 lat:60.276,
 lng:24.987,
 source:"https://www.superpadel.fi",
@@ -84,7 +201,7 @@ municipality:"Helsinki",
 chain:"Itsenäinen",
 courts:3,
 type:"Sisä",
-address:"Jokisuuntie 5, Helsinki",
+address:"Jokisuuntie 5",
 lat:60.218,
 lng:24.992,
 source:"https://padelviikinranta.fi",
@@ -97,7 +214,7 @@ municipality:"Helsinki",
 chain:"Open Padel",
 courts:3,
 type:"Ulko",
-address:"Lahnalahdentie 11, Helsinki",
+address:"Lahnalahdentie 11",
 lat:60.153,
 lng:24.878,
 source:"https://www.openpadel.fi",
@@ -110,7 +227,7 @@ municipality:"Helsinki",
 chain:"Superpadel",
 courts:3,
 type:"Ulko",
-address:"Agronominkatu 24, Helsinki",
+address:"Agronominkatu 24",
 lat:60.222,
 lng:25.046,
 source:"https://www.superpadel.fi",
@@ -123,7 +240,7 @@ municipality:"Helsinki",
 chain:"Itsenäinen",
 courts:2,
 type:"Sisä",
-address:"Jokisuuntie 2, Helsinki",
+address:"Jokisuuntie 2",
 lat:60.219,
 lng:24.989,
 source:"https://www.padelviikki.fi",
@@ -136,7 +253,7 @@ municipality:"Helsinki",
 chain:"PadelCenter",
 courts:2,
 type:"Ulko",
-address:"Hernesaarenranta 1, Helsinki",
+address:"Hernesaarenranta 1",
 lat:60.145,
 lng:24.921,
 source:"https://padelcenter.fi",
@@ -149,7 +266,7 @@ municipality:"Helsinki",
 chain:"Itsenäinen",
 courts:2,
 type:"Ulko",
-address:"Urheilukalastajankuja 1, Helsinki",
+address:"Urheilukalastajankuja 1",
 lat:60.207,
 lng:25.151,
 source:"https://www.padelaurinkolahti.com",
@@ -157,3 +274,76 @@ color:"#777777"
 }
 
 ];
+
+const map = L.map('map').setView([60.205,24.95],11);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'© OpenStreetMap contributors'
+}
+).addTo(map);
+
+const circleLayer = L.layerGroup().addTo(map);
+
+centers.forEach(c=>{
+
+const marker=L.circleMarker(
+[c.lat,c.lng],
+{
+radius:8,
+color:c.color,
+fillColor:c.color,
+fillOpacity:1,
+weight:2
+}
+).addTo(map);
+
+marker.bindPopup(`
+<b>${c.name}</b><br>
+Kunta: ${c.municipality}<br>
+Kenttiä: ${c.courts}<br>
+Tyyppi: ${c.type}<br>
+Ketju: ${c.chain}<br>
+Osoite: ${c.address}<br><br>
+<a href="${c.source}" target="_blank">
+Virallinen lähde
+</a>
+`);
+
+L.circle(
+[c.lat,c.lng],
+{
+radius:4000,
+color:c.color,
+fillColor:c.color,
+fillOpacity:0.20,
+weight:2
+}
+).addTo(circleLayer);
+
+});
+
+document.getElementById("centerCount").innerText=
+centers.length;
+
+document.getElementById("courtCount").innerText=
+centers.reduce((sum,c)=>sum+c.courts,0);
+
+document
+.getElementById("toggleCircles")
+.addEventListener("change",function(){
+
+if(this.checked){
+map.addLayer(circleLayer);
+}
+else{
+map.removeLayer(circleLayer);
+}
+
+});
+
+</script>
+
+</body>
+</html>
