@@ -275,7 +275,13 @@ color:"#777777"
 
 ];
 
-const map = L.map('map').setView([60.205,24.95],11);
+const map = L.map('map');
+2
+ 
+3
+const bounds = centers.map(c => [c.lat, c.lng]);
+4
+map.fitBounds(bounds);
 
 L.tileLayer(
 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
