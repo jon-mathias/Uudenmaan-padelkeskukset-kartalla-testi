@@ -30,7 +30,61 @@ attribution:'© OpenStreetMap'
 }
 ).addTo(map);
 
-L.marker([60.251,24.846]).addTo(map);
+const centers = [
+
+{
+name:"PadelPoint Konala",
+lat:60.251,
+lng:24.846,
+courts:9,
+color:"#777777"
+},
+
+{
+name:"Open Padel Vallila",
+lat:60.194,
+lng:24.949,
+courts:9,
+color:"#00A878"
+},
+
+{
+name:"Open Padel Myllypuro",
+lat:60.225,
+lng:25.079,
+courts:8,
+color:"#00A878"
+}
+
+];
+
+centers.forEach(c => {
+
+L.circleMarker(
+[c.lat,c.lng],
+{
+radius:8,
+color:c.color,
+fillColor:c.color,
+fillOpacity:1
+}
+)
+.addTo(map)
+.bindPopup(
+`<b>${c.name}</b><br>Kenttiä: ${c.courts}`
+);
+
+L.circle(
+[c.lat,c.lng],
+{
+radius:4000,
+color:c.color,
+fillColor:c.color,
+fillOpacity:0.2
+}
+).addTo(map);
+
+});
 
 </script>
 
