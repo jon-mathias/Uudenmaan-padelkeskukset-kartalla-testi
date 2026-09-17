@@ -100,7 +100,6 @@ centers.forEach(c => {
     'Kenttiä: ' + c.courts + '<br>' +
     'Vaikutusalue: 4 km'
 )
-.openPopup();
 
     L.circle(
         [c.lat, c.lng],
@@ -110,7 +109,7 @@ centers.forEach(c => {
             fillColor: c.color,
             fillOpacity: 0.2
         }
-    ).addTo(map);
+).addTo(map).bringToBack();
 
 });
 
