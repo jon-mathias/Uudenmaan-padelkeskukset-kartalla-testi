@@ -60,6 +60,12 @@ html, body {
     font-size: 11px;
     color: #666;
 }
+
+.leaflet-tile-pane {
+    filter: grayscale(100%) brightness(1.35) contrast(0.55);
+    opacity: 0.65;
+}
+    
 </style>
 </head>
 
@@ -733,10 +739,9 @@ POHJAKARTTA
 */
 
 const baseMap = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
-        attribution:
-            "© OpenStreetMap contributors © CARTO"
+        attribution: "© OpenStreetMap contributors"
     }
 ).addTo(map);
 
