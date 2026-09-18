@@ -706,10 +706,99 @@ const map = L.map("map").setView(
     10
 );
 
-L.tileLayer(
+
+/*
+==========================================
+KARTTATASOJEN JÄRJESTYS
+==========================================
+*/
+
+map.createPane("populationPane");
+map.getPane("populationPane").style.zIndex = 250;
+
+map.createPane("roadsPane");
+map.getPane("roadsPane").style.zIndex = 300;
+
+
+/*
+==========================================
+POHJAKARTTA
+==========================================
+*/
+
+const baseMap = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
         attribution: "© OpenStreetMap contributors"
+    }
+).addTo(map);
+
+
+/*
+==========================================
+250 x 250 m VÄESTÖRUUDUKKO
+HSY / vuoden 2025 väestötiedot
+==========================================
+*/
+
+const populationLayer = L.tileLayer.wms(
+    "https://kartta.hsy.fi/geoserver/wms",
+    {
+        layers:
+            "asuminen_ja_maankaytto:Vaestotietoruudukko_2025",
+
+        format: "image/png",
+        transparent: true,
+
+        opacity: 0.45,
+
+        pane: "populationPane",
+
+        attribution: "Väestöruudukko © HSY"
+    }
+).addTo(map);
+
+
+/*
+==========================================
+PÄÄTIET / TOIMINNALLINEN LUOKKA
+==========================================
+*/
+
+const majorRoadsLayer = L.tileLayer.wms(
+    "https://avoinapi.vaylapilvi.fi/vaylatiedot/ows",
+    {
+        layers:
+            "tiestotiedot:toiminnallinen_luokka",
+
+        format: "image/png",
+        transparent: true,
+
+        opacity: 0.85,
+
+        pane: "roadsPane",
+
+        attribution: "Tiestö © Väylävirasto"
+    }
+).addTo(map);
+
+
+/*
+==========================================
+KARTTATASOJEN VALINTA
+==========================================
+*/
+
+L.control.layers(
+    {
+        "OpenStreetMap": baseMap
+    },
+    {
+        "Väestö 250 m": populationLayer,
+        "Päätiet": majorRoadsLayer
+    },
+    {
+        collapsed: false
     }
 ).addTo(map);
 
