@@ -89,27 +89,29 @@ centers.forEach(c => {
         [c.lat, c.lng],
         {
             radius: 8,
-            color: c.color,
-            fillColor: c.color,
+            color: "#2563eb",
+            fillColor: "#2563eb",
             fillOpacity: 1
         }
     )
     .addTo(map)
-.bindPopup(
-    '<b>' + c.name + '</b><br>' +
-    'Kenttiä: ' + c.courts + '<br>' +
-    'Vaikutusalue: 4 km'
-)
+    .bindPopup(
+        '<b>' + c.name + '</b><br>' +
+        'Pelikenttiä: <b>' + c.courts + '</b>'
+    );
 
     L.circle(
         [c.lat, c.lng],
         {
             radius: 4000,
-            color: c.color,
-            fillColor: c.color,
-            fillOpacity: 0.2
+            color: "#2563eb",
+            fillColor: "#2563eb",
+            fillOpacity: 0.12,
+            interactive: false
         }
-).addTo(map).bringToBack();
+    )
+    .addTo(map)
+    .bringToBack();
 
 });
 
