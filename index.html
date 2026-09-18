@@ -758,6 +758,24 @@ const populationLayer = L.tileLayer.wms(
     }
 ).addTo(map);
 
+/*
+==========================================
+1 km VÄESTÖRUUDUKKO
+KOKO SUOMI
+==========================================
+*/
+
+const populationFinland1km = L.tileLayer.wms(
+    "https://geo.stat.fi/geoserver/vaestoruutu/wms",
+    {
+        layers: "vaestoruutu:vaki2024_1km",
+        format: "image/png",
+        transparent: true,
+        opacity: 0.20,
+        pane: "populationPane",
+        attribution: "Väestöruutu © Tilastokeskus"
+    }
+);    
 
 /*
 ==========================================
@@ -794,14 +812,14 @@ L.control.layers(
         "OpenStreetMap": baseMap
     },
     {
-        "Väestö 250 m": populationLayer,
+        "Väestö 250 m – pääkaupunkiseutu": populationLayer,
+        "Väestö 1 km – muu Uusimaa": populationFinland1km,
         "Päätiet": majorRoadsLayer
     },
     {
         collapsed: false
     }
 ).addTo(map);
-
 
 /*
 Palauttaa keskuksen kokonaiskenttämäärän.
