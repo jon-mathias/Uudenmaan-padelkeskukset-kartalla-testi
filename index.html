@@ -21,7 +21,7 @@ html, body {
 /* Haalennetaan vain OpenStreetMap-pohjakarttaa */
 .leaflet-tile-pane {
     filter: grayscale(75%) brightness(1.18) contrast(0.75);
-    opacity: 0.65;
+    opacity: 0.80;
 }
     
 #map {
@@ -783,7 +783,7 @@ const populationFinland1km = L.tileLayer.wms(
         layers: "vaestoruutu:vaki2024_1km",
         format: "image/png",
         transparent: true,
-        opacity: 0.70,
+        opacity: 0.60,
         pane: "populationPane",
         attribution: "Väestöruutu © Tilastokeskus"
     }
