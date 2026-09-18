@@ -18,12 +18,18 @@ html, body {
     height: 100%;
 }
 
+/* Haalennetaan vain OpenStreetMap-pohjakarttaa */
+.leaflet-tile-pane {
+    filter: grayscale(75%) brightness(1.18) contrast(0.75);
+    opacity: 0.65;
+}
+    
 #map {
     width: 100%;
     height: 100vh;
     height: 100dvh;
 }
-
+    
 /* Kenttämäärä karttapisteen keskellä */
 .court-label {
     background: transparent;
@@ -727,9 +733,10 @@ POHJAKARTTA
 */
 
 const baseMap = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     {
-        attribution: "© OpenStreetMap contributors"
+        attribution:
+            "© OpenStreetMap contributors © CARTO"
     }
 ).addTo(map);
 
@@ -750,7 +757,7 @@ const populationLayer = L.tileLayer.wms(
         format: "image/png",
         transparent: true,
 
-        opacity: 0.45,
+        opacity: 0.35,
 
         pane: "populationPane",
 
@@ -771,11 +778,11 @@ const populationFinland1km = L.tileLayer.wms(
         layers: "vaestoruutu:vaki2024_1km",
         format: "image/png",
         transparent: true,
-        opacity: 0.20,
+        opacity: 0.70,
         pane: "populationPane",
         attribution: "Väestöruutu © Tilastokeskus"
     }
-);    
+); 
 
 /*
 ==========================================
@@ -957,7 +964,7 @@ centers.forEach(center => {
             color: "#2563eb",
             weight: 1,
             fillColor: "#2563eb",
-            fillOpacity: 0.10,
+            fillOpacity: 0.025,
             interactive: false
         }
     )
