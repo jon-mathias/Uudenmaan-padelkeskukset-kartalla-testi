@@ -745,57 +745,42 @@ function createPopup(center) {
         center.name +
         '</div>';
 
-    /*
-    Jos sisä/ulkojako tiedetään
-    */
+    if (center.address) {
+        html +=
+            '<div class="popup-note">' +
+            center.address +
+            '</div>';
+    }
 
-    if (
-        typeof center.indoor === "number" ||
-        typeof center.outdoor === "number"
-    ) {
-
-        const indoor =
-            center.indoor || 0;
-
-        const outdoor =
-            center.outdoor || 0;
-
+    if ((center.indoor ?? 0) > 0) {
         html +=
             '<div class="popup-row">' +
             'Sisäkenttiä: <b>' +
-            indoor +
+            center.indoor +
             '</b></div>';
+    }
 
+    if ((center.outdoor ?? 0) > 0) {
         html +=
             '<div class="popup-row">' +
             'Ulkokenttiä: <b>' +
-            outdoor +
-            '</b></div>';
-
-        html +=
-            '<div class="popup-row">' +
-            'Yhteensä: <b>' +
-            total +
+            center.outdoor +
             '</b></div>';
     }
 
-    /*
-    Jos tiedetään vasta kokonaismäärä
-    */
-
-    else {
-
+    if ((center.single ?? 0) > 0) {
         html +=
             '<div class="popup-row">' +
-            'Kenttiä yhteensä: <b>' +
-            total +
+            'Single-kenttiä: <b>' +
+            center.single +
             '</b></div>';
-
-        html +=
-            '<div class="popup-note">' +
-            'Sisä-/ulkojakoa ei ole vielä tarkistettu.' +
-            '</div>';
     }
+
+    html +=
+        '<div class="popup-row">' +
+        'Yhteensä: <b>' +
+        total +
+        '</b></div>';
 
     return html;
 }
