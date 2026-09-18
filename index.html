@@ -724,17 +724,11 @@ function getTotalCourts(center) {
         return center.total;
     }
 
-    const indoor =
-        typeof center.indoor === "number"
-            ? center.indoor
-            : 0;
+    const indoor = center.indoor ?? 0;
+    const outdoor = center.outdoor ?? 0;
+    const single = center.single ?? 0;
 
-    const outdoor =
-        typeof center.outdoor === "number"
-            ? center.outdoor
-            : 0;
-
-    return indoor + outdoor;
+    return indoor + outdoor + single;
 }
 
 
