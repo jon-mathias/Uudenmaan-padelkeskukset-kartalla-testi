@@ -15,6 +15,19 @@ html, body {
     height: 100%;
 }
 
+.court-label {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.leaflet-tooltip.court-label::before {
+    display: none;
+}
+    
 #map {
     width: 100%;
     height: 100vh;
@@ -85,17 +98,28 @@ attribution:'© OpenStreetMap contributors'
 
 centers.forEach(c => {
 
-    L.circleMarker(
+    const marker = L.circleMarker(
         [c.lat, c.lng],
         {
-            radius: 8,
+            radius: 12,
             color: "#2563eb",
             fillColor: "#2563eb",
-            fillOpacity: 1
+            fillOpacity: 1,
+            weight: 1
         }
     )
-    .addTo(map)
-    .bindPopup(
+    .addTo(map);
+
+    marker.bindTooltip(
+        String(c.courts),
+        {
+            permanent: true,
+            direction: "center",
+            className: "court-label"
+        }
+    );
+
+    marker.bindPopup(
         '<b>' + c.name + '</b><br>' +
         'Pelikenttiä: <b>' + c.courts + '</b>'
     );
