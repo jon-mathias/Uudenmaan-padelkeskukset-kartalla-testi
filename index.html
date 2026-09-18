@@ -78,205 +78,618 @@ total: 6
 
 const centers = [
 
-/* =========================
+/* =========================================================
    HELSINKI
-========================= */
+========================================================= */
 
 {
     name: "PadelPoint Konala",
-    lat: 60.251,
-    lng: 24.846,
-    total: 9
+    city: "Helsinki",
+    address: "Malminkartanonkuja 2, 00390 Helsinki",
+    lat: 60.24255,
+    lng: 24.85143,
+    indoor: 9
 },
 
 {
     name: "Open Padel Vallila",
-    lat: 60.194,
-    lng: 24.949,
-    total: 9
+    city: "Helsinki",
+    address: "Konepajanpasaasi 1, 00510 Helsinki",
+    lat: 60.19354,
+    lng: 24.94533,
+    indoor: 9,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Open Padel Myllypuro",
-    lat: 60.225,
-    lng: 25.079,
-    total: 8
+    city: "Helsinki",
+    address: "Ratasmyllynkuja 3, 00900 Helsinki",
+    lat: 60.21283,
+    lng: 25.06939,
+    indoor: 8
 },
 
 {
     name: "Padel Pirkkola",
-    lat: 60.232,
-    lng: 24.909,
-    total: 8
+    city: "Helsinki",
+    address: "Pirkkolan Metsätie 8, 00630 Helsinki",
+    lat: 60.23170,
+    lng: 24.90972,
+    indoor: 8
 },
 
 {
     name: "Open Padel Jakomäki",
-    lat: 60.255,
-    lng: 25.078,
-    total: 5
+    city: "Helsinki",
+    address: "Luiskatie 1, 00770 Helsinki",
+    lat: 60.25500,
+    lng: 25.07800,
+    indoor: 4,
+    single: 1,
+    coordAccuracy: "approx"
 },
 
 {
-    name: "Superpadel Siltamäki",
-    lat: 60.276,
-    lng: 24.987,
-    total: 5
+    name: "Smash Center",
+    city: "Helsinki",
+    address: "Varikkotie 4, 00900 Helsinki",
+    lat: 60.20977,
+    lng: 25.06828,
+    indoor: 2,
+    outdoor: 4
 },
 
 {
     name: "Padel Viikinranta",
-    lat: 60.218,
-    lng: 24.992,
-    total: 3
-},
-
-{
-    name: "Open Padel Lauttasaari",
-    lat: 60.153,
-    lng: 24.878,
-    total: 3
-},
-
-{
-    name: "Superpadel Latokartano",
-    lat: 60.222,
-    lng: 25.046,
-    total: 3
+    city: "Helsinki",
+    address: "Jokisuuntie 5, 00560 Helsinki",
+    lat: 60.21820,
+    lng: 24.98760,
+    indoor: 2,
+    single: 1
 },
 
 {
     name: "Padel Viikki",
-    lat: 60.219,
-    lng: 24.989,
-    total: 2
+    city: "Helsinki",
+    address: "Jokisuuntie 2, 00560 Helsinki",
+    lat: 60.21900,
+    lng: 24.98900,
+    indoor: 2
+},
+
+{
+    name: "Helsingin Mailapelikeskus",
+    city: "Helsinki",
+    address: "Tapulikaupungintie 4, 00750 Helsinki",
+    lat: 60.27086,
+    lng: 25.03221,
+    indoor: 2
+},
+
+{
+    name: "Social Sports Club",
+    city: "Helsinki",
+    address: "Henry Fordin katu 6, 00150 Helsinki",
+    lat: 60.14780,
+    lng: 24.91960,
+    indoor: 2,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Laajasalon Tennishallit",
+    city: "Helsinki",
+    address: "Sarvastonkaari 23, 00840 Helsinki",
+    lat: 60.17421,
+    lng: 25.05551,
+    indoor: 1,
+    outdoor: 2
+},
+
+{
+    name: "Open Padel Lauttasaari",
+    city: "Helsinki",
+    address: "Lahnalahdentie 11, 00200 Helsinki",
+    lat: 60.15300,
+    lng: 24.87800,
+    outdoor: 3,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Superpadel Siltamäki",
+    city: "Helsinki",
+    address: "Pallomäentie 14, 00740 Helsinki",
+    lat: 60.27576,
+    lng: 24.98155,
+    outdoor: 5
+},
+
+{
+    name: "Superpadel Latokartano",
+    city: "Helsinki",
+    address: "Agronominkatu 24, 00790 Helsinki",
+    lat: 60.23061,
+    lng: 25.03512,
+    outdoor: 3
+},
+
+{
+    name: "The Park Padel Hietsu",
+    city: "Helsinki",
+    address: "Hiekkarannantie 11, 00100 Helsinki",
+    lat: 60.17562,
+    lng: 24.90833,
+    outdoor: 4
 },
 
 {
     name: "PadelCenter Hernesaari",
-    lat: 60.145,
-    lng: 24.921,
-    total: 2
+    city: "Helsinki",
+    address: "Hernesaarenranta 1, 00150 Helsinki",
+    lat: 60.14500,
+    lng: 24.92100,
+    outdoor: 2,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Padel Aurinkolahti",
-    lat: 60.207,
-    lng: 25.151,
-    total: 2
+    city: "Helsinki",
+    address: "Urheilukalastajankuja 1, 00990 Helsinki",
+    lat: 60.20242,
+    lng: 25.16034,
+    outdoor: 2,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Sörnäisten Padel",
+    city: "Helsinki",
+    address: "Sörnäisten Rantapromenadi 1, 00540 Helsinki",
+    lat: 60.18248,
+    lng: 24.96328,
+    outdoor: 2
+},
+
+{
+    name: "Vuosaaren urheilutalo / padel",
+    city: "Helsinki",
+    address: "Vuosaarentie 5, 00980 Helsinki",
+    lat: 60.20884,
+    lng: 25.14111,
+    outdoor: 2
 },
 
 
-/* =========================
+/* =========================================================
    ESPOO
-========================= */
+========================================================= */
+
+{
+    name: "Rosegarden",
+    city: "Espoo",
+    address: "Turveradantie 16, 02180 Espoo",
+    lat: 60.20070,
+    lng: 24.79070,
+    indoor: 15,
+    outdoor: 2
+},
 
 {
     name: "House of Games",
-    lat: 60.218,
-    lng: 24.723,
-    total: 19
+    city: "Espoo",
+    address: "Lommilantie 2 B, 02740 Espoo",
+    lat: 60.22030,
+    lng: 24.65170,
+    indoor: 17,
+    single: 2
 },
 
 {
     name: "ESC Padel",
-    lat: 60.157,
-    lng: 24.694,
-    total: 11
+    city: "Espoo",
+    address: "Marsbyntie 10, 02280 Espoo",
+    lat: 60.16032,
+    lng: 24.69557,
+    indoor: 9
+},
+
+{
+    name: "ESC Padel ulkokentät",
+    city: "Espoo",
+    address: "Martinniitty 7, 02270 Espoo",
+    lat: 60.16154,
+    lng: 24.69374,
+    outdoor: 2
 },
 
 {
     name: "Replay Padel Suomenoja",
-    lat: 60.159,
-    lng: 24.655,
-    total: 4
+    city: "Espoo",
+    address: "Niittyrinne 4, 02270 Espoo",
+    lat: 60.16613,
+    lng: 24.70349,
+    indoor: 4
+},
+
+{
+    name: "The Park Padel Kilo",
+    city: "Espoo",
+    address: "Kutojantie 4, 02630 Espoo",
+    lat: 60.21111,
+    lng: 24.75034,
+    indoor: 8
+},
+
+{
+    name: "Padel Rocks",
+    city: "Espoo",
+    address: "Nimismiehenpelto 4 B, 02770 Espoo",
+    lat: 60.21588,
+    lng: 24.65218,
+    indoor: 5,
+    single: 1,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Targa Arena",
+    city: "Espoo",
+    address: "Ullanmäentie 21, 02750 Espoo",
+    lat: 60.20623,
+    lng: 24.71155,
+    indoor: 3
 },
 
 {
     name: "Open Padel Leppävaara",
-    lat: 60.216,
-    lng: 24.812,
+    city: "Espoo",
+    address: "Säterinpuistontie 1, 02600 Espoo",
+    lat: 60.21600,
+    lng: 24.81200,
     outdoor: 6,
-    indoor: 0
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Pleimore Padel Otaniemi",
+    city: "Espoo",
+    address: "Otaranta 7, 02150 Espoo",
+    lat: 60.18540,
+    lng: 24.83710,
+    outdoor: 3,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Pleimore Padel Tapiola",
+    city: "Espoo",
+    address: "Kaupinkalliontie 8, 02100 Espoo",
+    lat: 60.17811,
+    lng: 24.80321,
+    outdoor: 2
+},
+
+{
+    name: "Superpadel Ringside",
+    city: "Espoo",
+    address: "Nurmikartanontie 5, 02970 Espoo",
+    lat: 60.27699,
+    lng: 24.74134,
+    outdoor: 2
 },
 
 
-/* =========================
+/* =========================================================
    VANTAA
-========================= */
+========================================================= */
 
 {
     name: "Open Padel Kaivoksela",
-    lat: 60.267,
-    lng: 24.842,
-    total: 10
+    city: "Vantaa",
+    address: "Vetotie 3, 01610 Vantaa",
+    lat: 60.26700,
+    lng: 24.84200,
+    indoor: 8,
+    single: 2,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Open Padel Martinlaakso",
-    lat: 60.282,
-    lng: 24.853,
-    total: 6
+    city: "Vantaa",
+    address: "Martinkyläntie 9, 01770 Vantaa",
+    lat: 60.28200,
+    lng: 24.85300,
+    indoor: 6,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Open Padel Rajatorppa",
-    lat: 60.284,
-    lng: 24.841,
-    indoor: 0,
-    outdoor: 6
+    city: "Vantaa",
+    address: "Vapaalanpolku 15, 01650 Vantaa",
+    lat: 60.28400,
+    lng: 24.84100,
+    outdoor: 6,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Let's Padel Porttipuisto",
-    lat: 60.315,
-    lng: 25.119,
-    total: 5
+    city: "Vantaa",
+    address: "Porttisuontie 7, 01200 Vantaa",
+    lat: 60.31500,
+    lng: 25.11900,
+    indoor: 5,
+    coordAccuracy: "approx"
 },
 
 
-/* =========================
+/* =========================================================
+   TUUSULA
+========================================================= */
+
+{
+    name: "Tuusulan Urheilukeskus",
+    city: "Tuusula",
+    address: "Kilpailukuja 4, 04300 Tuusula",
+    lat: 60.39230,
+    lng: 25.03174,
+    indoor: 2,
+    outdoor: 2
+},
+
+{
+    name: "Social Padel Tuusula",
+    city: "Tuusula",
+    address: "Moukarinkuja, 04300 Tuusula",
+    lat: 60.39500,
+    lng: 25.03600,
+    outdoor: 2,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Padel Farmi Rusutjärvi",
+    city: "Tuusula",
+    address: "Siippoon Nummitie 14, 04370 Rusutjärvi",
+    lat: 60.43000,
+    lng: 25.00000,
+    outdoor: 2,
+    coordAccuracy: "approx"
+},
+
+
+/* =========================================================
    KERAVA
-========================= */
+========================================================= */
 
 {
     name: "Padel & Golfkamari",
-    lat: 60.396,
-    lng: 25.108,
-    total: 5
+    city: "Kerava",
+    address: "Palopellonkatu 7, 04250 Kerava",
+    lat: 60.39600,
+    lng: 25.10800,
+    indoor: 3,
+    single: 1,
+    coordAccuracy: "approx"
 },
 
 {
     name: "XO Center",
-    lat: 60.404,
-    lng: 25.106,
-    total: 4
+    city: "Kerava",
+    address: "Keinukalliontie 2, 04220 Kerava",
+    lat: 60.40400,
+    lng: 25.10600,
+    indoor: 4,
+    coordAccuracy: "approx"
 },
 
 
-/* =========================
+/* =========================================================
    JÄRVENPÄÄ
-========================= */
+========================================================= */
 
 {
     name: "Hi5 Padel",
-    lat: 60.487,
-    lng: 25.087,
-    total: 4
+    city: "Järvenpää",
+    address: "Seutulantie 17, 04410 Järvenpää",
+    lat: 60.48700,
+    lng: 25.08700,
+    indoor: 4,
+    coordAccuracy: "approx"
 },
 
 {
-    name: "Kotone Sport",
-    lat: 60.474,
-    lng: 25.072,
-    total: 5
+    name: "Kotone Sport Minkkikatu",
+    city: "Järvenpää",
+    address: "Minkkikatu 24, 04430 Järvenpää",
+    lat: 60.47400,
+    lng: 25.07200,
+    indoor: 3,
+    single: 1,
+    coordAccuracy: "approx"
 },
 
 {
     name: "Kotone Sport Diggarinkatu",
-    lat: 60.486,
-    lng: 25.061,
-    total: 6
+    city: "Järvenpää",
+    address: "Diggarinkatu 2, 04420 Järvenpää",
+    lat: 60.48600,
+    lng: 25.06100,
+    indoor: 3,
+    outdoor: 3,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Kotone Sport Tervanokka",
+    city: "Järvenpää",
+    address: "Tervanokantie 8, 04400 Järvenpää",
+    lat: 60.47400,
+    lng: 25.10000,
+    outdoor: 2,
+    coordAccuracy: "approx"
+},
+
+
+/* =========================================================
+   PORVOO
+========================================================= */
+
+{
+    name: "Tarmola Padel",
+    city: "Porvoo",
+    address: "Werner Söderströmin katu 23, 06150 Porvoo",
+    lat: 60.40762,
+    lng: 25.67905,
+    indoor: 5
+},
+
+{
+    name: "Padel Arena Porvoo",
+    city: "Porvoo",
+    address: "Höylänlastu 1, 06150 Porvoo",
+    lat: 60.40950,
+    lng: 25.67750,
+    indoor: 3,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Kartano Padel Ölstens",
+    city: "Porvoo",
+    address: "Raudoittajantie 3, Porvoo",
+    lat: 60.36664,
+    lng: 25.59290,
+    indoor: 2
+},
+
+{
+    name: "Kartano Padel Haikkoo",
+    city: "Porvoo",
+    address: "Haikkoontie 114, 06400 Porvoo",
+    lat: 60.35010,
+    lng: 25.62210,
+    outdoor: 1
+},
+
+
+/* =========================================================
+   SIPOO
+========================================================= */
+
+{
+    name: "GOPA Sipoonlahti",
+    city: "Sipoo",
+    address: "Työpaikkatie 6, 01150 Söderkulla",
+    lat: 60.29117,
+    lng: 25.34347,
+    indoor: 2
+},
+
+{
+    name: "Superpadel Nevas",
+    city: "Sipoo",
+    address: "Sprängmanintie 25, 01150 Sipoo",
+    lat: 60.32000,
+    lng: 25.40600,
+    outdoor: 2,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Sipoonranta Padel",
+    city: "Sipoo",
+    address: "Örnvikintie 8, 01120 Sipoo",
+    lat: 60.25976,
+    lng: 25.23169,
+    outdoor: 1
+},
+
+
+/* =========================================================
+   NURMIJÄRVI
+========================================================= */
+
+{
+    name: "PadelTehdas Nurmijärvi",
+    city: "Nurmijärvi",
+    address: "Ilveskuja 6, 01900 Nurmijärvi",
+    lat: 60.45450,
+    lng: 24.83810,
+    indoor: 4
+},
+
+
+/* =========================================================
+   KLAUKKALA
+
+   En löytänyt 18.9.2026 varmennettua aktiivista
+   padelkeskusta Klaukkalasta.
+========================================================= */
+
+
+/* =========================================================
+   KIRKKONUMMI
+========================================================= */
+
+{
+    name: "Padel Masala",
+    city: "Kirkkonummi",
+    address: "Ljusdalantie 2, 02430 Masala",
+    lat: 60.15870,
+    lng: 24.53750,
+    indoor: 4,
+    single: 1,
+    coordAccuracy: "approx"
+},
+
+{
+    name: "Padel Kirsikka",
+    city: "Kirkkonummi",
+    address: "Asemankulma 2, 02400 Kirkkonummi",
+    lat: 60.12049,
+    lng: 24.44333,
+    outdoor: 2
+},
+
+{
+    name: "Sarfvik Beach Club Padel",
+    city: "Kirkkonummi",
+    address: "Siltarannankuja 2, Kirkkonummi",
+    lat: 60.15530,
+    lng: 24.61038,
+    outdoor: 2
+},
+
+
+/* =========================================================
+   NUMMELA / VIHTI
+========================================================= */
+
+{
+    name: "Padelpaja powered by Padel Vihti",
+    city: "Nummela (Vihti)",
+    address: "Kalkkimäentie 8, 03100 Nummela",
+    lat: 60.32417,
+    lng: 24.29480,
+    indoor: 4
+},
+
+{
+    name: "Padel Vihti Pajuniitty",
+    city: "Nummela (Vihti)",
+    address: "Naaranpajuntie 17, 03100 Nummela",
+    lat: 60.32409,
+    lng: 24.31164,
+    outdoor: 2,
+    countNeedsRecheck: true,
+    coordAccuracy: "approx"
 }
 
 ];
