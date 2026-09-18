@@ -6,7 +6,10 @@
 
 <title>Uudenmaan Padelkartta</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
 <style>
 html, body {
@@ -15,6 +18,13 @@ html, body {
     height: 100%;
 }
 
+#map {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+}
+
+/* Kenttämäärä karttapisteen keskellä */
 .court-label {
     background: transparent;
     border: none;
@@ -27,10 +37,22 @@ html, body {
 .leaflet-tooltip.court-label::before {
     display: none;
 }
-    
-#map {
-    width: 100%;
-    height: 100vh;
+
+/* Popupin ulkoasu */
+.popup-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.popup-row {
+    margin-top: 2px;
+}
+
+.popup-note {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #666;
 }
 </style>
 </head>
@@ -43,75 +65,371 @@ html, body {
 
 <script>
 
+/*
+DATA
+
+Kun sisä- ja ulkokentät tiedetään:
+indoor: 4,
+outdoor: 2
+
+Kun tiedetään vain kokonaismäärä:
+total: 6
+*/
+
 const centers = [
 
-/* HELSINKI */
+/* =========================
+   HELSINKI
+========================= */
 
-{ name:"PadelPoint Konala", lat:60.251, lng:24.846, courts:9, color:"#777777" },
-{ name:"Open Padel Vallila", lat:60.194, lng:24.949, courts:9, color:"#00A878" },
-{ name:"Open Padel Myllypuro", lat:60.225, lng:25.079, courts:8, color:"#00A878" },
-{ name:"Padel Pirkkola", lat:60.232, lng:24.909, courts:8, color:"#777777" },
-{ name:"Open Padel Jakomäki", lat:60.255, lng:25.078, courts:5, color:"#00A878" },
-{ name:"Superpadel Siltamäki", lat:60.276, lng:24.987, courts:5, color:"#FF9800" },
-{ name:"Padel Viikinranta", lat:60.218, lng:24.992, courts:3, color:"#777777" },
-{ name:"Open Padel Lauttasaari", lat:60.153, lng:24.878, courts:3, color:"#00A878" },
-{ name:"Superpadel Latokartano", lat:60.222, lng:25.046, courts:3, color:"#FF9800" },
-{ name:"Padel Viikki", lat:60.219, lng:24.989, courts:2, color:"#777777" },
-{ name:"PadelCenter Hernesaari", lat:60.145, lng:24.921, courts:2, color:"#E63946" },
-{ name:"Padel Aurinkolahti", lat:60.207, lng:25.151, courts:2, color:"#777777" },
+{
+    name: "PadelPoint Konala",
+    lat: 60.251,
+    lng: 24.846,
+    total: 9
+},
 
-/* ESPOO */
+{
+    name: "Open Padel Vallila",
+    lat: 60.194,
+    lng: 24.949,
+    total: 9
+},
 
-{ name:"House of Games", lat:60.218, lng:24.723, courts:19, color:"#777777" },
-{ name:"ESC Padel", lat:60.157, lng:24.694, courts:11, color:"#777777" },
-{ name:"Replay Padel Suomenoja", lat:60.159, lng:24.655, courts:4, color:"#777777" },
-{ name:"Open Padel Leppävaara", lat:60.216, lng:24.812, courts:6, color:"#00A878" },
+{
+    name: "Open Padel Myllypuro",
+    lat: 60.225,
+    lng: 25.079,
+    total: 8
+},
 
-/* VANTAA */
+{
+    name: "Padel Pirkkola",
+    lat: 60.232,
+    lng: 24.909,
+    total: 8
+},
 
-{ name:"Open Padel Kaivoksela", lat:60.267, lng:24.842, courts:10, color:"#00A878" },
-{ name:"Open Padel Martinlaakso", lat:60.282, lng:24.853, courts:6, color:"#00A878" },
-{ name:"Open Padel Rajatorppa", lat:60.284, lng:24.841, courts:6, color:"#00A878" },
-{ name:"Let's Padel Porttipuisto", lat:60.315, lng:25.119, courts:5, color:"#777777" },
+{
+    name: "Open Padel Jakomäki",
+    lat: 60.255,
+    lng: 25.078,
+    total: 5
+},
 
-/* KERAVA */
+{
+    name: "Superpadel Siltamäki",
+    lat: 60.276,
+    lng: 24.987,
+    total: 5
+},
 
-{ name:"Padel & Golfkamari", lat:60.396, lng:25.108, courts:5, color:"#777777" },
-{ name:"XO Center", lat:60.404, lng:25.106, courts:4, color:"#777777" },
+{
+    name: "Padel Viikinranta",
+    lat: 60.218,
+    lng: 24.992,
+    total: 3
+},
 
-/* JÄRVENPÄÄ */
+{
+    name: "Open Padel Lauttasaari",
+    lat: 60.153,
+    lng: 24.878,
+    total: 3
+},
 
-{ name:"Hi5 Padel", lat:60.487, lng:25.087, courts:4, color:"#777777" },
-{ name:"Kotone Sport", lat:60.474, lng:25.072, courts:5, color:"#777777" },
-{ name:"Kotone Sport Diggarinkatu", lat:60.486, lng:25.061, courts:6, color:"#777777" }
+{
+    name: "Superpadel Latokartano",
+    lat: 60.222,
+    lng: 25.046,
+    total: 3
+},
+
+{
+    name: "Padel Viikki",
+    lat: 60.219,
+    lng: 24.989,
+    total: 2
+},
+
+{
+    name: "PadelCenter Hernesaari",
+    lat: 60.145,
+    lng: 24.921,
+    total: 2
+},
+
+{
+    name: "Padel Aurinkolahti",
+    lat: 60.207,
+    lng: 25.151,
+    total: 2
+},
+
+
+/* =========================
+   ESPOO
+========================= */
+
+{
+    name: "House of Games",
+    lat: 60.218,
+    lng: 24.723,
+    total: 19
+},
+
+{
+    name: "ESC Padel",
+    lat: 60.157,
+    lng: 24.694,
+    total: 11
+},
+
+{
+    name: "Replay Padel Suomenoja",
+    lat: 60.159,
+    lng: 24.655,
+    total: 4
+},
+
+{
+    name: "Open Padel Leppävaara",
+    lat: 60.216,
+    lng: 24.812,
+    outdoor: 6,
+    indoor: 0
+},
+
+
+/* =========================
+   VANTAA
+========================= */
+
+{
+    name: "Open Padel Kaivoksela",
+    lat: 60.267,
+    lng: 24.842,
+    total: 10
+},
+
+{
+    name: "Open Padel Martinlaakso",
+    lat: 60.282,
+    lng: 24.853,
+    total: 6
+},
+
+{
+    name: "Open Padel Rajatorppa",
+    lat: 60.284,
+    lng: 24.841,
+    indoor: 0,
+    outdoor: 6
+},
+
+{
+    name: "Let's Padel Porttipuisto",
+    lat: 60.315,
+    lng: 25.119,
+    total: 5
+},
+
+
+/* =========================
+   KERAVA
+========================= */
+
+{
+    name: "Padel & Golfkamari",
+    lat: 60.396,
+    lng: 25.108,
+    total: 5
+},
+
+{
+    name: "XO Center",
+    lat: 60.404,
+    lng: 25.106,
+    total: 4
+},
+
+
+/* =========================
+   JÄRVENPÄÄ
+========================= */
+
+{
+    name: "Hi5 Padel",
+    lat: 60.487,
+    lng: 25.087,
+    total: 4
+},
+
+{
+    name: "Kotone Sport",
+    lat: 60.474,
+    lng: 25.072,
+    total: 5
+},
+
+{
+    name: "Kotone Sport Diggarinkatu",
+    lat: 60.486,
+    lng: 25.061,
+    total: 6
+}
 
 ];
 
-const map = L.map('map').setView([60.25,24.9],10);
+
+/*
+==========================================
+KARTTA
+==========================================
+*/
+
+const map = L.map("map").setView(
+    [60.25, 24.95],
+    10
+);
 
 L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-attribution:'© OpenStreetMap contributors'
-}
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        attribution: "© OpenStreetMap contributors"
+    }
 ).addTo(map);
 
-centers.forEach(c => {
 
-    const marker = L.circleMarker(
-        [c.lat, c.lng],
-        {
-            radius: 12,
-            color: "#2563eb",
-            fillColor: "#2563eb",
-            fillOpacity: 1,
-            weight: 1
-        }
-    )
-    .addTo(map);
+/*
+Palauttaa keskuksen kokonaiskenttämäärän.
+*/
+
+function getTotalCourts(center) {
+
+    if (typeof center.total === "number") {
+        return center.total;
+    }
+
+    const indoor =
+        typeof center.indoor === "number"
+            ? center.indoor
+            : 0;
+
+    const outdoor =
+        typeof center.outdoor === "number"
+            ? center.outdoor
+            : 0;
+
+    return indoor + outdoor;
+}
+
+
+/*
+Tekee popupin sisällön.
+*/
+
+function createPopup(center) {
+
+    const total = getTotalCourts(center);
+
+    let html =
+        '<div class="popup-title">' +
+        center.name +
+        '</div>';
+
+    /*
+    Jos sisä/ulkojako tiedetään
+    */
+
+    if (
+        typeof center.indoor === "number" ||
+        typeof center.outdoor === "number"
+    ) {
+
+        const indoor =
+            center.indoor || 0;
+
+        const outdoor =
+            center.outdoor || 0;
+
+        html +=
+            '<div class="popup-row">' +
+            'Sisäkenttiä: <b>' +
+            indoor +
+            '</b></div>';
+
+        html +=
+            '<div class="popup-row">' +
+            'Ulkokenttiä: <b>' +
+            outdoor +
+            '</b></div>';
+
+        html +=
+            '<div class="popup-row">' +
+            'Yhteensä: <b>' +
+            total +
+            '</b></div>';
+    }
+
+    /*
+    Jos tiedetään vasta kokonaismäärä
+    */
+
+    else {
+
+        html +=
+            '<div class="popup-row">' +
+            'Kenttiä yhteensä: <b>' +
+            total +
+            '</b></div>';
+
+        html +=
+            '<div class="popup-note">' +
+            'Sisä-/ulkojakoa ei ole vielä tarkistettu.' +
+            '</div>';
+    }
+
+    return html;
+}
+
+
+/*
+==========================================
+KESKUSTEN PIIRTÄMINEN
+==========================================
+*/
+
+centers.forEach(center => {
+
+    const total =
+        getTotalCourts(center);
+
+
+    /*
+    Hallin / keskuksen piste
+    */
+
+    const marker =
+        L.circleMarker(
+            [center.lat, center.lng],
+            {
+                radius: 13,
+                color: "#2563eb",
+                fillColor: "#2563eb",
+                fillOpacity: 1,
+                weight: 1
+            }
+        )
+        .addTo(map);
+
+
+    /*
+    Kenttämäärä näkyviin jatkuvasti
+    */
 
     marker.bindTooltip(
-        String(c.courts),
+        String(total),
         {
             permanent: true,
             direction: "center",
@@ -119,18 +437,28 @@ centers.forEach(c => {
         }
     );
 
+
+    /*
+    Klikattava popup
+    */
+
     marker.bindPopup(
-        '<b>' + c.name + '</b><br>' +
-        'Pelikenttiä: <b>' + c.courts + '</b>'
+        createPopup(center)
     );
 
+
+    /*
+    4 km vaikutusalue
+    */
+
     L.circle(
-        [c.lat, c.lng],
+        [center.lat, center.lng],
         {
             radius: 4000,
             color: "#2563eb",
+            weight: 1,
             fillColor: "#2563eb",
-            fillOpacity: 0.12,
+            fillOpacity: 0.10,
             interactive: false
         }
     )
@@ -143,4 +471,3 @@ centers.forEach(c => {
 
 </body>
 </html>
-``
